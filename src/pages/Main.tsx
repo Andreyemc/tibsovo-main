@@ -7,6 +7,7 @@ import mobileHeader from "../assets/main/Header-mobile.svg";
 import leftBackground from "../assets/main-back/left.svg";
 import rightBackground from "../assets/main-back/right.svg";
 import Footer from "../components/Footer";
+import Warning from "../components/Warning";
 
 function Main() {
   const [opacity, setOpacity] = useState(1);
@@ -285,6 +286,7 @@ function Main() {
         <div style={{ height: "100px" }}></div>
       </div>
       <Footer />
+      <Warning />
     </>
   );
 }
