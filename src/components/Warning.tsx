@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import logoWhite from '../assets/logo-white.svg'
+import { useState, useEffect } from "react";
+import logoWhite from "../assets/logo-white.svg";
 
 interface WarningProps {
   imageUrl?: string;
@@ -9,39 +9,46 @@ interface WarningProps {
   onConfirm?: () => void;
 }
 
-const WARNING_STORAGE_KEY = 'warningConfirmed';
+const WARNING_STORAGE_KEY = "warningConfirmed";
 
-function Warning({ imageUrl, imageAlt = "Предупреждение", isOpen: controlledIsOpen, onClose, onConfirm }: WarningProps) {
+function Warning({
+  imageUrl,
+  imageAlt = "Предупреждение",
+  isOpen: controlledIsOpen,
+  onClose,
+  onConfirm,
+}: WarningProps) {
   const [internalIsOpen, setInternalIsOpen] = useState(false);
-  
+
   // Check localStorage on mount
   useEffect(() => {
     if (controlledIsOpen !== undefined) {
       // If controlled, use controlled state
       return;
     }
-    
+
     const savedChoice = localStorage.getItem(WARNING_STORAGE_KEY);
     // Show modal if no choice saved or if user previously chose "No"
     // Don't show if user previously chose "Yes"
-    if (savedChoice !== 'yes') {
+    if (savedChoice !== "yes") {
       setInternalIsOpen(true);
     }
   }, [controlledIsOpen]);
-  
+
   // Use controlled state if provided, otherwise use internal state
-  const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen;
+  const isOpen =
+    controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen;
   const setIsOpen = onClose ? () => onClose() : setInternalIsOpen;
 
   const handleNo = () => {
     // Save "no" to localStorage, but still show on next page load
-    localStorage.setItem(WARNING_STORAGE_KEY, 'no');
+    localStorage.setItem(WARNING_STORAGE_KEY, "no");
     setIsOpen(false);
   };
 
   const handleYes = () => {
     // Save "yes" to localStorage, don't show again
-    localStorage.setItem(WARNING_STORAGE_KEY, 'yes');
+    localStorage.setItem(WARNING_STORAGE_KEY, "yes");
     setIsOpen(false);
     if (onConfirm) {
       onConfirm();
@@ -51,20 +58,20 @@ function Warning({ imageUrl, imageAlt = "Предупреждение", isOpen: 
   // Close modal on Escape key
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isOpen) {
+      if (e.key === "Escape" && isOpen) {
         setIsOpen(false);
       }
     };
 
     if (isOpen) {
-      document.addEventListener('keydown', handleEscape);
+      document.addEventListener("keydown", handleEscape);
       // Prevent body scroll when modal is open
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     }
 
     return () => {
-      document.removeEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'unset';
+      document.removeEventListener("keydown", handleEscape);
+      document.body.style.overflow = "unset";
     };
   }, [isOpen, setIsOpen]);
 
@@ -73,7 +80,7 @@ function Warning({ imageUrl, imageAlt = "Предупреждение", isOpen: 
   return (
     <>
       {/* Full Screen Modal */}
-      <div 
+      <div
         className="fixed inset-0 z-[90] flex items-center justify-center"
         style={{
           backgroundColor: "rgba(36, 34, 106, 0.8)",
@@ -81,7 +88,7 @@ function Warning({ imageUrl, imageAlt = "Предупреждение", isOpen: 
         onClick={() => setIsOpen(false)}
       >
         {/* White Modal Content */}
-        <div 
+        <div
           className="relative bg-[#F7F7FD] flex flex-col items-stretch justify-start rounded-2xl px-5 md:px-12 py-12 md:py-12"
           style={{
             maxWidth: "500px",
@@ -97,25 +104,25 @@ function Warning({ imageUrl, imageAlt = "Предупреждение", isOpen: 
             className="absolute right-4 top-4 w-8 h-8 flex items-center justify-center cursor-pointer opacity-70 hover:opacity-100 transition-opacity z-10"
             aria-label="Закрыть"
           >
-            <svg 
-              width="26" 
-              height="26" 
-              viewBox="0 0 26 26" 
-              fill="none" 
+            <svg
+              width="26"
+              height="26"
+              viewBox="0 0 26 26"
+              fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path 
-                d="M5.5 5.5L20.5 20.5" 
-                stroke="#151518" 
-                strokeWidth="2" 
-                strokeLinecap="round" 
+              <path
+                d="M5.5 5.5L20.5 20.5"
+                stroke="#151518"
+                strokeWidth="2"
+                strokeLinecap="round"
                 strokeLinejoin="round"
               />
-              <path 
-                d="M20.5 5.5L5.5 20.5" 
-                stroke="#151518" 
-                strokeWidth="2" 
-                strokeLinecap="round" 
+              <path
+                d="M20.5 5.5L5.5 20.5"
+                stroke="#151518"
+                strokeWidth="2"
+                strokeLinecap="round"
                 strokeLinejoin="round"
               />
             </svg>
@@ -138,12 +145,17 @@ function Warning({ imageUrl, imageAlt = "Предупреждение", isOpen: 
 
             {/* Warning Text */}
             <p className="text-[#151518] font-normal mt-5">
-              Информация, размещённая на данном веб-сайте, предназначена только для медицинских и фармацевтических работников Российской федерации и не может быть использована иными лицами, в том числе для замены консультаций со специалистом/врачом.
+              Информация, размещённая на&nbsp;данном веб-сайте, предназначена
+              только для медицинских и&nbsp;фармацевтических работников
+              Российской федерации и&nbsp;не&nbsp;может быть использована иными
+              лицами, в&nbsp;том числе для замены консультаций
+              со&nbsp;специалистом/врачом.
             </p>
 
             {/* Question Text */}
             <p className="text-[#151518] font-semibold mt-5">
-              Вы являетесь медицинским и/или фармацевтическим работником и согласны с утверждением выше?
+              Вы&nbsp;являетесь медицинским и/или фармацевтическим работником
+              и&nbsp;согласны с&nbsp;утверждением выше?
             </p>
 
             {/* Buttons */}
@@ -175,4 +187,3 @@ function Warning({ imageUrl, imageAlt = "Предупреждение", isOpen: 
 }
 
 export default Warning;
-

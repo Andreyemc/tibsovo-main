@@ -4,8 +4,11 @@ import logo from "../assets/main/logo.svg";
 import arrowIcon from "../assets/main/Arrow.svg";
 import productImage from "../assets/main/image 6.svg";
 import mobileHeader from "../assets/main/Header-mobile.svg";
-import leftBackground from "../assets/main-back/left.svg";
-import rightBackground from "../assets/main-back/right.svg";
+import molecule7 from "../assets/molecules/молекула ивосидениба 7.svg";
+import molecule17 from "../assets/molecules/молекула ивосидениба 17.svg";
+import molecule20 from "../assets/molecules/молекула ивосидениба 20.svg";
+import molecule13 from "../assets/molecules/молекула ивосидениба 13.svg";
+import molecule16 from "../assets/molecules/молекула ивосидениба 16.svg";
 import Footer from "../components/Footer";
 import Warning from "../components/Warning";
 
@@ -44,6 +47,24 @@ function Main() {
     <>
       {/* Мобильная версия */}
       <div className="block md:hidden w-full">
+        {/* Background Molecules Mobile */}
+        <div
+          style={{
+            position: "fixed",
+            top: "2%",
+            right: "-10%",
+            width: "35%",
+            zIndex: 1,
+            pointerEvents: "none",
+          }}
+        >
+          <img
+            src={molecule7}
+            alt=""
+            style={{ width: "100%", height: "auto", objectFit: "contain" }}
+          />
+        </div>
+
         {/* Мобильная версия Header */}
         <div className="w-full">
           <img
@@ -52,7 +73,7 @@ function Main() {
             className="w-full h-auto"
             style={{
               objectFit: "contain",
-              borderRadius: "0"
+              borderRadius: "0",
             }}
           />
         </div>
@@ -67,7 +88,7 @@ function Main() {
                 style={{
                   backgroundColor: "#61279E",
                   marginTop: index > 0 ? "8px" : "0",
-                  cursor: "pointer"
+                  cursor: "pointer",
                 }}
                 onClick={handleCardClick}
               >
@@ -123,49 +144,75 @@ function Main() {
 
       {/* Десктопная версия */}
       <div className="hidden md:block">
-        {/* Фиксированное изображение слева */}
+        {/* Top Left Molecule (Orange) - 17 */}
         <div
           style={{
             position: "fixed",
-            top: 0,
-            left: 0,
-            height: "100vh",
-            width: "auto",
-            zIndex: 3,
-            pointerEvents: "none"
+            top: "-2%",
+            left: "-2%",
+            width: "20%",
+            zIndex: 1,
+            pointerEvents: "none",
           }}
         >
           <img
-            src={leftBackground}
+            src={molecule17}
             alt=""
-            style={{
-              height: "100%",
-              width: "auto",
-              objectFit: "cover"
-            }}
+            style={{ width: "100%", height: "auto", objectFit: "contain" }}
           />
         </div>
 
-        {/* Фиксированное изображение справа */}
+        {/* Top Right Molecule - 20 */}
         <div
           style={{
             position: "fixed",
-            top: 0,
-            right: 0,
-            height: "100vh",
-            width: "auto",
-            zIndex: 3,
-            pointerEvents: "none"
+            top: "5%",
+            right: "-5%",
+            width: "18%",
+            zIndex: 1,
+            pointerEvents: "none",
           }}
         >
           <img
-            src={rightBackground}
+            src={molecule20}
             alt=""
-            style={{
-              height: "100%",
-              width: "auto",
-              objectFit: "cover"
-            }}
+            style={{ width: "100%", height: "auto", objectFit: "contain" }}
+          />
+        </div>
+
+        {/* Middle Left Molecule - 13 */}
+        <div
+          style={{
+            position: "fixed",
+            top: "45%",
+            left: "-5%",
+            width: "15%",
+            zIndex: 1,
+            pointerEvents: "none",
+          }}
+        >
+          <img
+            src={molecule13}
+            alt=""
+            style={{ width: "100%", height: "auto", objectFit: "contain" }}
+          />
+        </div>
+
+        {/* Bottom Right Molecule - 16 */}
+        <div
+          style={{
+            position: "fixed",
+            bottom: "10%",
+            right: "-2%",
+            width: "18%",
+            zIndex: 1,
+            pointerEvents: "none",
+          }}
+        >
+          <img
+            src={molecule16}
+            alt=""
+            style={{ width: "100%", height: "auto", objectFit: "contain" }}
           />
         </div>
 
@@ -216,7 +263,7 @@ function Main() {
                     style={{
                       backgroundColor: "#61279E",
                       minHeight: "380px",
-                      cursor: "pointer"
+                      cursor: "pointer",
                     }}
                     onClick={handleCardClick}
                   >
@@ -292,4 +339,3 @@ function Main() {
 }
 
 export default Main;
-
